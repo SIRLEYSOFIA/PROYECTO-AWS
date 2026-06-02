@@ -1,0 +1,14 @@
+[
+  { "PutRequest": { "Item": { "id": { "N": "1" }, "name": { "S": "Arroz Premium" }, "barcode": { "S": "1" }, "unitPrice": { "N": "5200" }, "availableStock": { "N": "999" }, "category": { "S": "Granos" } } } },
+  { "PutRequest": { "Item": { "id": { "N": "2" }, "name": { "S": "Aceite Vegetal" }, "barcode": { "S": "2" }, "unitPrice": { "N": "14500" }, "availableStock": { "N": "999" }, "category": { "S": "Despensa" } } } },
+  { "PutRequest": { "Item": { "id": { "N": "3" }, "name": { "S": "Jabon Liquido" }, "barcode": { "S": "3" }, "unitPrice": { "N": "8900" }, "availableStock": { "N": "999" }, "category": { "S": "Aseo" } } } },
+  { "PutRequest": { "Item": { "id": { "N": "4" }, "name": { "S": "Azucar Morena" }, "barcode": { "S": "4" }, "unitPrice": { "N": "4300" }, "availableStock": { "N": "999" }, "category": { "S": "Granos" } } } },
+  { "PutRequest": { "Item": { "id": { "N": "5" }, "name": { "S": "Leche Entera" }, "barcode": { "S": "5" }, "unitPrice": { "N": "4100" }, "availableStock": { "N": "999" }, "category": { "S": "Lacteos" } } } },
+  { "PutRequest": { "Item": { "id": { "N": "6" }, "name": { "S": "Huevos AA x12" }, "barcode": { "S": "6" }, "unitPrice": { "N": "11800" }, "availableStock": { "N": "999" }, "category": { "S": "Lacteos" } } } },
+  { "PutRequest": { "Item": { "id": { "N": "7" }, "name": { "S": "Pan Tajado" }, "barcode": { "S": "7" }, "unitPrice": { "N": "6500" }, "availableStock": { "N": "999" }, "category": { "S": "Panaderia" } } } },
+  { "PutRequest": { "Item": { "id": { "N": "8" }, "name": { "S": "Cafe Molido" }, "barcode": { "S": "8" }, "unitPrice": { "N": "17800" }, "availableStock": { "N": "999" }, "category": { "S": "Bebidas" } } } },
+  { "PutRequest": { "Item": { "id": { "N": "9" }, "name": { "S": "Atun en Lata" }, "barcode": { "S": "9" }, "unitPrice": { "N": "7200" }, "availableStock": { "N": "999" }, "category": { "S": "Despensa" } } } },
+  { "PutRequest": { "Item": { "id": { "N": "10" }, "name": { "S": "Detergente Polvo" }, "barcode": { "S": "10" }, "unitPrice": { "N": "12900" }, "availableStock": { "N": "999" }, "category": { "S": "Aseo" } } } },
+  { "PutRequest": { "Item": { "id": { "N": "11" }, "name": { "S": "Gaseosa Cola" }, "barcode": { "S": "11" }, "unitPrice": { "N": "6900" }, "availableStock": { "N": "999" }, "category": { "S": "Bebidas" } } } },
+  { "PutRequest": { "Item": { "id": { "N": "12" }, "name": { "S": "Papel Higienico x4" }, "barcode": { "S": "12" }, "unitPrice": { "N": "11200" }, "availableStock": { "N": "999" }, "category": { "S": "Aseo" } } } }
+]

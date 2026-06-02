@@ -1,0 +1,270 @@
+/**
+ * SellerSelectorEnhanced Component Styles
+ * 
+ * Provides keyboard-accessible styling for seller selection dropdown
+ * with focus indicators and visual feedback for keyboard navigation.
+ */
+
+.seller-selector-enhanced {
+  position: relative;
+  width: 100%;
+  font-family: inherit;
+}
+
+.seller-selector-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* Dropdown Container */
+.seller-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+  margin-top: -1px;
+}
+
+.seller-dropdown-empty {
+  padding: 12px 16px;
+  text-align: center;
+  color: #999;
+  font-size: 14px;
+}
+
+/* Dropdown Item */
+.seller-dropdown-item {
+  padding: 12px 16px;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.15s ease;
+  user-select: none;
+}
+
+.seller-dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.seller-dropdown-item:hover {
+  background-color: #f5f5f5;
+}
+
+/* Highlighted Item (keyboard navigation) */
+.seller-dropdown-item.highlighted {
+  background-color: #e3f2fd;
+  outline: 2px solid #2196f3;
+  outline-offset: -2px;
+}
+
+/* Recent Seller Badge */
+.seller-dropdown-item.recent {
+  background-color: #f9f9f9;
+}
+
+.seller-recent-badge {
+  display: inline-block;
+  background-color: #4caf50;
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 3px;
+  margin-left: 8px;
+}
+
+/* Item Header */
+.seller-dropdown-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.seller-dropdown-item-name {
+  font-weight: 500;
+  color: #333;
+  font-size: 14px;
+}
+
+/* Item Details */
+.seller-dropdown-item-details {
+  display: flex;
+  gap: 12px;
+  font-size: 12px;
+  color: #666;
+}
+
+.seller-dropdown-item-id {
+  font-weight: 500;
+  color: #666;
+}
+
+.seller-dropdown-item-email {
+  color: #999;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 200px;
+}
+
+/* Selected Seller Display */
+.seller-selector-selected {
+  padding: 8px 12px;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.seller-selected-name {
+  font-weight: 500;
+}
+
+.seller-selected-id {
+  color: #999;
+  font-size: 12px;
+}
+
+/* Icon */
+.seller-icon {
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Scrollbar Styling */
+.seller-dropdown::-webkit-scrollbar {
+  width: 8px;
+}
+
+.seller-dropdown::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.seller-dropdown::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.seller-dropdown::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Focus Indicators for Accessibility */
+.seller-selector-enhanced input:focus {
+  outline: 2px solid #2196f3;
+  outline-offset: 2px;
+}
+
+/* Keyboard Navigation Focus */
+.seller-dropdown-item:focus-visible {
+  outline: 2px solid #2196f3;
+  outline-offset: -2px;
+  background-color: #e3f2fd;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .seller-dropdown {
+    max-height: 250px;
+  }
+
+  .seller-dropdown-item {
+    padding: 10px 12px;
+  }
+
+  .seller-dropdown-item-details {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .seller-dropdown-item-email {
+    max-width: 150px;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .seller-dropdown {
+    background: #2a2a2a;
+    border-color: #444;
+  }
+
+  .seller-dropdown-item {
+    border-bottom-color: #3a3a3a;
+    color: #e0e0e0;
+  }
+
+  .seller-dropdown-item:hover {
+    background-color: #3a3a3a;
+  }
+
+  .seller-dropdown-item.highlighted {
+    background-color: #1a3a52;
+    outline-color: #64b5f6;
+  }
+
+  .seller-dropdown-item-name {
+    color: #e0e0e0;
+  }
+
+  .seller-dropdown-item-details {
+    color: #b0b0b0;
+  }
+
+  .seller-dropdown-item-id {
+    color: #b0b0b0;
+  }
+
+  .seller-dropdown-item-email {
+    color: #888;
+  }
+
+  .seller-selector-selected {
+    background-color: #3a3a3a;
+    color: #e0e0e0;
+  }
+
+  .seller-selected-id {
+    color: #888;
+  }
+
+  .seller-dropdown-empty {
+    color: #666;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: more) {
+  .seller-dropdown-item.highlighted {
+    outline-width: 3px;
+  }
+
+  .seller-dropdown-item-name {
+    font-weight: 700;
+  }
+
+  .seller-recent-badge {
+    font-weight: 700;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .seller-dropdown-item {
+    transition: none;
+  }
+}

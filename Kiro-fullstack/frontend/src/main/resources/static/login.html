@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | Productos JWT</title>
+    <link rel="stylesheet" href="/login.css" />
+</head>
+<body class="auth-body">
+<div class="auth-shell">
+    <section class="auth-left">
+        <h1>Gestión de productos</h1>
+        <p>
+            Inicia sesión para administrar el inventario, consultar productos
+            y trabajar con persistencia real.
+        </p>
+
+        <div class="info-card">
+            <h3>Credenciales de prueba</h3>
+            <p><strong>Activo:</strong> admin / admin123</p>
+            <p><strong>Inactivo:</strong> inactivo / noactivo1</p>
+        </div>
+    </section>
+
+    <section class="auth-right">
+        <div class="glass-card login-card">
+            <h2>Iniciar sesión</h2>
+            <p class="muted">Accede con tus credenciales</p>
+
+            <div id="loginMessage"></div>
+
+            <form id="loginForm" autocomplete="off">
+                <div class="form-group">
+                    <label for="usuario">Usuario</label>
+                    <input type="text" id="usuario" placeholder="admin" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="contrasena">Contraseña</label>
+                    <input type="password" id="contrasena" placeholder="admin123" required />
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+            </form>
+        </div>
+    </section>
+</div>
+
+<script src="/login.js"></script>
+</body>
+</html>

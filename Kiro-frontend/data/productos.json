@@ -1,0 +1,110 @@
+[
+  {
+    "id": 1,
+    "nombre": "Arroz Premium",
+    "descripcion": "Arroz blanco de alta calidad 1 kg",
+    "subcategoria": "Granos",
+    "precio": 5200.0,
+    "precioxcantidad": 5200.0,
+    "estado": "activo"
+  },
+  {
+    "id": 2,
+    "nombre": "Aceite Vegetal",
+    "descripcion": "Aceite vegetal para cocina 1 litro",
+    "subcategoria": "Despensa",
+    "precio": 14500.0,
+    "precioxcantidad": 14500.0,
+    "estado": "activo"
+  },
+  {
+    "id": 3,
+    "nombre": "Jabon Liquido",
+    "descripcion": "Jabon antibacterial para manos 500 ml",
+    "subcategoria": "Aseo",
+    "precio": 8900.0,
+    "precioxcantidad": 8900.0,
+    "estado": "activo"
+  },
+  {
+    "id": 4,
+    "nombre": "Azucar Morena",
+    "descripcion": "Azucar natural de cana 1 kg",
+    "subcategoria": "Granos",
+    "precio": 4300.0,
+    "precioxcantidad": 4300.0,
+    "estado": "activo"
+  },
+  {
+    "id": 5,
+    "nombre": "Leche Entera",
+    "descripcion": "Leche entera larga vida 1 litro",
+    "subcategoria": "Lacteos",
+    "precio": 4100.0,
+    "precioxcantidad": 4100.0,
+    "estado": "activo"
+  },
+  {
+    "id": 6,
+    "nombre": "Huevos AA x12",
+    "descripcion": "Docena de huevos AA",
+    "subcategoria": "Lacteos",
+    "precio": 11800.0,
+    "precioxcantidad": 11800.0,
+    "estado": "activo"
+  },
+  {
+    "id": 7,
+    "nombre": "Pan Tajado",
+    "descripcion": "Pan tajado familiar",
+    "subcategoria": "Panaderia",
+    "precio": 6500.0,
+    "precioxcantidad": 6500.0,
+    "estado": "activo"
+  },
+  {
+    "id": 8,
+    "nombre": "Cafe Molido",
+    "descripcion": "Cafe molido tradicional 500 g",
+    "subcategoria": "Bebidas",
+    "precio": 17800.0,
+    "precioxcantidad": 17800.0,
+    "estado": "activo"
+  },
+  {
+    "id": 9,
+    "nombre": "Atun en Lata",
+    "descripcion": "Atun en agua 170 g",
+    "subcategoria": "Despensa",
+    "precio": 7200.0,
+    "precioxcantidad": 7200.0,
+    "estado": "activo"
+  },
+  {
+    "id": 10,
+    "nombre": "Detergente Polvo",
+    "descripcion": "Detergente para ropa 1 kg",
+    "subcategoria": "Aseo",
+    "precio": 12900.0,
+    "precioxcantidad": 12900.0,
+    "estado": "activo"
+  },
+  {
+    "id": 11,
+    "nombre": "Gaseosa Cola",
+    "descripcion": "Gaseosa cola 1.5 litros",
+    "subcategoria": "Bebidas",
+    "precio": 6900.0,
+    "precioxcantidad": 6900.0,
+    "estado": "activo"
+  },
+  {
+    "id": 12,
+    "nombre": "Papel Higienico x4",
+    "descripcion": "Paquete de papel higienico cuatro rollos",
+    "subcategoria": "Aseo",
+    "precio": 11200.0,
+    "precioxcantidad": 11200.0,
+    "estado": "activo"
+  }
+]

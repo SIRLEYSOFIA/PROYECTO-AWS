@@ -1,0 +1,217 @@
+:root {
+  --bg: #eef2f7;
+  --surface: #ffffff;
+  --border: #d1d5db;
+  --text: #111827;
+  --muted: #6b7280;
+  --primary: #166534;
+  --danger: #dc2626;
+  --accent: #0f766e;
+  --radius: 8px;
+  --font: 'Segoe UI', system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+}
+
+.sales-header {
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 20px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: 1.35rem;
+}
+
+.sales-header p {
+  color: var(--muted);
+}
+
+.sales-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.btn {
+  min-height: 40px;
+  padding: 8px 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+.btn-secondary {
+  background: #f8fafc;
+}
+
+.btn-danger {
+  background: var(--danger);
+  color: #fff;
+  border-color: var(--danger);
+}
+
+.sales-main {
+  padding: 16px;
+  display: grid;
+  gap: 16px;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.summary-card,
+.sales-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.summary-card {
+  padding: 14px 16px;
+  display: grid;
+  gap: 4px;
+}
+
+.summary-card__label {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.summary-card strong {
+  font-size: 1.6rem;
+  color: var(--accent);
+}
+
+.sales-panel {
+  overflow: hidden;
+}
+
+.panel-heading {
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.panel-heading span {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.message {
+  min-height: 24px;
+  padding: 8px 16px 0;
+  color: var(--muted);
+}
+
+.message.error {
+  color: var(--danger);
+  font-weight: 700;
+}
+
+.table-wrapper {
+  width: 100%;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 920px;
+}
+
+th,
+td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: middle;
+}
+
+th {
+  background: #f8fafc;
+  color: var(--muted);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+}
+
+td.amount {
+  text-align: right;
+  font-weight: 700;
+}
+
+.status {
+  display: inline-flex;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #dcfce7;
+  color: var(--primary);
+  font-weight: 800;
+  font-size: 0.82rem;
+}
+
+@media (max-width: 760px) {
+  .sales-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .sales-actions {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .sales-actions .btn {
+    flex: 1;
+  }
+
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cuadre | Caja</title>
+  <link rel="stylesheet" href="/cuadre.css" />
+</head>
+<body>
+  <header class="cash-header">
+    <div>
+      <h1>Cuadre de caja</h1>
+      <p>Revise ventas, efectivo esperado y diferencia al cierre.</p>
+    </div>
+    <nav class="cash-actions" aria-label="Navegacion principal">
+      <a class="btn btn-primary" href="/pos.html?v=2">Abrir POS</a>
+      <a class="btn btn-secondary" href="/ventas.html">Ventas</a>
+      <a class="btn btn-secondary" href="/productos.html">Productos</a>
+      <button id="reload-btn" class="btn btn-secondary" type="button">Recargar</button>
+      <button id="logout-btn" class="btn btn-danger" type="button">Cerrar sesion</button>
+    </nav>
+  </header>
+
+  <main class="cash-main">
+    <section class="cash-panel cash-panel--filters">
+      <div class="field">
+        <label for="cashier-filter">Cajera</label>
+        <input id="cashier-filter" type="text" value="admin" autocomplete="off" />
+      </div>
+      <div class="field">
+        <label for="date-filter">Fecha</label>
+        <input id="date-filter" type="date" />
+      </div>
+      <div class="field">
+        <label for="opening-cash">Base inicial</label>
+        <input id="opening-cash" type="number" min="0" step="100" value="0" />
+      </div>
+      <div class="field">
+        <label for="declared-cash">Efectivo contado</label>
+        <input id="declared-cash" type="number" min="0" step="100" placeholder="0" />
+      </div>
+    </section>
+
+    <section class="summary-grid" aria-label="Resumen del cierre">
+      <article class="summary-card">
+        <span>Ventas</span>
+        <strong id="summary-sales">0</strong>
+      </article>
+      <article class="summary-card">
+        <span>Total vendido</span>
+        <strong id="summary-total">$0</strong>
+      </article>
+      <article class="summary-card">
+        <span>Efectivo esperado</span>
+        <strong id="summary-expected">$0</strong>
+      </article>
+      <article class="summary-card">
+        <span>Diferencia</span>
+        <strong id="summary-difference">$0</strong>
+      </article>
+    </section>
+
+    <section class="cash-layout">
+      <article class="cash-panel">
+        <div class="panel-heading">
+          <h2>Detalle del cuadre</h2>
+          <span id="mode-label">Modo AWS/SAM</span>
+        </div>
+        <div id="message" class="message" role="status" aria-live="polite"></div>
+        <div class="breakdown">
+          <div><span>Base inicial</span><strong id="opening-cash-label">$0</strong></div>
+          <div><span>Ventas en efectivo</span><strong id="cash-sales-label">$0</strong></div>
+          <div><span>Ventas con tarjeta</span><strong id="card-sales-label">$0</strong></div>
+          <div><span>Ventas mixtas</span><strong id="mixed-sales-label">$0</strong></div>
+          <div><span>Cambios entregados</span><strong id="change-label">$0</strong></div>
+          <div class="breakdown__total"><span>Efectivo esperado en caja</span><strong id="expected-cash-label">$0</strong></div>
+        </div>
+        <div id="closing-status" class="closing-status">Ingrese el efectivo contado para calcular el cuadre.</div>
+      </article>
+
+      <article class="cash-panel">
+        <div class="panel-heading">
+          <h2>Ventas incluidas</h2>
+          <span id="included-count">0 registros</span>
+        </div>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Hora</th>
+                <th>Venta</th>
+                <th>Cajera</th>
+                <th>Art.</th>
+                <th>Pago</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody id="sales-body">
+              <tr>
+                <td colspan="6">Cargando ventas...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script src="/config.js"></script>
+  <script type="module" src="/cuadre.js"></script>
+</body>
+</html>

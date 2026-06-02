@@ -1,0 +1,284 @@
+/**
+ * CartTableEnhanced Styles
+ */
+
+.cart-table-enhanced {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.cart-table-enhanced--empty {
+  padding: 20px;
+  text-align: center;
+  color: #999;
+  font-size: 0.95em;
+}
+
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9em;
+}
+
+.cart-table thead {
+  background-color: #f5f5f5;
+  border-bottom: 2px solid #ddd;
+}
+
+.cart-table th {
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  color: #333;
+}
+
+.cart-table tbody tr {
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.15s ease;
+}
+
+.cart-table tbody tr:hover {
+  background-color: #fafafa;
+}
+
+.cart-table tbody tr.focused {
+  background-color: #f0f7ff;
+}
+
+.cart-table td {
+  padding: 12px;
+  vertical-align: middle;
+}
+
+/* Column Widths */
+.cart-table-col-name {
+  flex: 1;
+  min-width: 150px;
+}
+
+.cart-table-col-qty {
+  width: 80px;
+  text-align: center;
+}
+
+.cart-table-col-price {
+  width: 100px;
+  text-align: right;
+}
+
+.cart-table-col-discount {
+  width: 80px;
+  text-align: center;
+}
+
+.cart-table-col-tax {
+  width: 80px;
+  text-align: right;
+}
+
+.cart-table-col-subtotal {
+  width: 100px;
+  text-align: right;
+  font-weight: 600;
+}
+
+.cart-table-col-actions {
+  width: 140px;
+  text-align: center;
+}
+
+/* Item Name and SKU */
+.cart-item-name {
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.cart-item-sku {
+  font-size: 0.85em;
+  color: #999;
+}
+
+/* Editable Inputs */
+.cart-table-input {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  font-size: 0.9em;
+  font-family: inherit;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.cart-table-input:focus {
+  outline: none;
+  border-color: #1976d2;
+  box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.1);
+}
+
+.cart-table-input:hover {
+  border-color: #bbb;
+}
+
+/* Discount Badge */
+.discount-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  background-color: #fff3cd;
+  color: #856404;
+  border-radius: 3px;
+  font-size: 0.85em;
+  font-weight: 500;
+}
+
+.discount-none {
+  color: #ccc;
+}
+
+/* Tax Amount */
+.tax-amount {
+  color: #666;
+  font-size: 0.9em;
+}
+
+/* Subtotal Amount */
+.subtotal-amount {
+  color: #1976d2;
+  font-weight: 600;
+}
+
+/* Action Buttons */
+.cart-item-actions {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+}
+
+.cart-action-btn {
+  padding: 6px 8px;
+  border: 1px solid #ddd;
+  background-color: white;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+}
+
+.cart-action-btn:hover {
+  background-color: #f5f5f5;
+  border-color: #999;
+}
+
+.cart-action-btn:focus {
+  outline: 2px solid #1976d2;
+  outline-offset: -2px;
+}
+
+.cart-action-btn--increase {
+  color: #4caf50;
+}
+
+.cart-action-btn--increase:hover {
+  background-color: #f1f8f4;
+  border-color: #4caf50;
+}
+
+.cart-action-btn--decrease {
+  color: #ff9800;
+}
+
+.cart-action-btn--decrease:hover {
+  background-color: #fff3e0;
+  border-color: #ff9800;
+}
+
+.cart-action-btn--discount {
+  color: #2196f3;
+}
+
+.cart-action-btn--discount:hover {
+  background-color: #e3f2fd;
+  border-color: #2196f3;
+}
+
+.cart-action-btn--remove {
+  color: #f44336;
+}
+
+.cart-action-btn--remove:hover {
+  background-color: #ffebee;
+  border-color: #f44336;
+}
+
+/* Keyboard Focus Indicators */
+.cart-table-row:focus-within {
+  outline: 2px solid #1976d2;
+  outline-offset: -2px;
+}
+
+/* Accessibility: High contrast mode */
+@media (prefers-contrast: more) {
+  .cart-table-input:focus {
+    box-shadow: 0 0 0 3px #000;
+  }
+
+  .cart-action-btn:focus {
+    outline-width: 3px;
+  }
+}
+
+/* Accessibility: Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .cart-table tbody tr,
+  .cart-table-input,
+  .cart-action-btn {
+    transition: none;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cart-table {
+    font-size: 0.8em;
+  }
+
+  .cart-table th,
+  .cart-table td {
+    padding: 8px;
+  }
+
+  .cart-table-col-name {
+    min-width: 120px;
+  }
+
+  .cart-table-col-qty,
+  .cart-table-col-discount,
+  .cart-table-col-tax {
+    width: 60px;
+  }
+
+  .cart-table-col-price,
+  .cart-table-col-subtotal {
+    width: 80px;
+  }
+
+  .cart-table-col-actions {
+    width: 120px;
+  }
+
+  .cart-item-actions {
+    gap: 2px;
+  }
+
+  .cart-action-btn {
+    padding: 4px 6px;
+    min-width: 28px;
+    height: 28px;
+    font-size: 0.8em;
+  }
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro | Punto de Venta</title>
+    <link rel="stylesheet" href="/login.css" />
+    <link rel="stylesheet" href="/register.css" />
+</head>
+<body class="auth-body">
+<div class="auth-shell auth-shell--single">
+    <section class="auth-left">
+        <span class="eyebrow">Nuevo usuario</span>
+        <h1>Registra un cajero en segundos</h1>
+        <p>
+            Las cuentas creadas desde aquí quedan como cajero. Un administrador
+            puede cambiar la operación creando usuarios con rol ADMIN desde el panel.
+        </p>
+    </section>
+
+    <section class="auth-right">
+        <div class="glass-card login-card">
+            <h2>Crear cuenta</h2>
+            <p class="muted">Registra un acceso para caja</p>
+
+            <div id="registerMessage"></div>
+
+            <form id="registerForm" autocomplete="off">
+                <div class="form-group">
+                    <label for="usuario">Usuario</label>
+                    <input type="text" id="usuario" placeholder="Nombre de usuario" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="contrasena">Contraseña</label>
+                    <input type="password" id="contrasena" placeholder="Contraseña" required />
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Registrar cajero</button>
+            </form>
+            <p class="auth-switch">
+                ¿Ya tienes cuenta?
+                <a href="/login.html">Volver al login</a>
+            </p>
+        </div>
+    </section>
+</div>
+
+<script src="/register.js"></script>
+</body>
+</html>

@@ -1,0 +1,270 @@
+/**
+ * CustomerSelectorEnhanced Component Styles
+ * 
+ * Provides keyboard-accessible styling for customer selection dropdown
+ * with focus indicators and visual feedback for keyboard navigation.
+ */
+
+.customer-selector-enhanced {
+  position: relative;
+  width: 100%;
+  font-family: inherit;
+}
+
+.customer-selector-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* Dropdown Container */
+.customer-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+  margin-top: -1px;
+}
+
+.customer-dropdown-empty {
+  padding: 12px 16px;
+  text-align: center;
+  color: #999;
+  font-size: 14px;
+}
+
+/* Dropdown Item */
+.customer-dropdown-item {
+  padding: 12px 16px;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.15s ease;
+  user-select: none;
+}
+
+.customer-dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.customer-dropdown-item:hover {
+  background-color: #f5f5f5;
+}
+
+/* Highlighted Item (keyboard navigation) */
+.customer-dropdown-item.highlighted {
+  background-color: #e3f2fd;
+  outline: 2px solid #2196f3;
+  outline-offset: -2px;
+}
+
+/* Recent Customer Badge */
+.customer-dropdown-item.recent {
+  background-color: #f9f9f9;
+}
+
+.customer-recent-badge {
+  display: inline-block;
+  background-color: #4caf50;
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 3px;
+  margin-left: 8px;
+}
+
+/* Item Header */
+.customer-dropdown-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.customer-dropdown-item-name {
+  font-weight: 500;
+  color: #333;
+  font-size: 14px;
+}
+
+/* Item Details */
+.customer-dropdown-item-details {
+  display: flex;
+  gap: 12px;
+  font-size: 12px;
+  color: #666;
+}
+
+.customer-dropdown-item-phone {
+  font-weight: 500;
+  color: #666;
+}
+
+.customer-dropdown-item-email {
+  color: #999;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 200px;
+}
+
+/* Selected Customer Display */
+.customer-selector-selected {
+  padding: 8px 12px;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.customer-selected-name {
+  font-weight: 500;
+}
+
+.customer-selected-phone {
+  color: #999;
+  font-size: 12px;
+}
+
+/* Icon */
+.customer-icon {
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Scrollbar Styling */
+.customer-dropdown::-webkit-scrollbar {
+  width: 8px;
+}
+
+.customer-dropdown::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.customer-dropdown::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.customer-dropdown::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Focus Indicators for Accessibility */
+.customer-selector-enhanced input:focus {
+  outline: 2px solid #2196f3;
+  outline-offset: 2px;
+}
+
+/* Keyboard Navigation Focus */
+.customer-dropdown-item:focus-visible {
+  outline: 2px solid #2196f3;
+  outline-offset: -2px;
+  background-color: #e3f2fd;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .customer-dropdown {
+    max-height: 250px;
+  }
+
+  .customer-dropdown-item {
+    padding: 10px 12px;
+  }
+
+  .customer-dropdown-item-details {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .customer-dropdown-item-email {
+    max-width: 150px;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .customer-dropdown {
+    background: #2a2a2a;
+    border-color: #444;
+  }
+
+  .customer-dropdown-item {
+    border-bottom-color: #3a3a3a;
+    color: #e0e0e0;
+  }
+
+  .customer-dropdown-item:hover {
+    background-color: #3a3a3a;
+  }
+
+  .customer-dropdown-item.highlighted {
+    background-color: #1a3a52;
+    outline-color: #64b5f6;
+  }
+
+  .customer-dropdown-item-name {
+    color: #e0e0e0;
+  }
+
+  .customer-dropdown-item-details {
+    color: #b0b0b0;
+  }
+
+  .customer-dropdown-item-phone {
+    color: #b0b0b0;
+  }
+
+  .customer-dropdown-item-email {
+    color: #888;
+  }
+
+  .customer-selector-selected {
+    background-color: #3a3a3a;
+    color: #e0e0e0;
+  }
+
+  .customer-selected-phone {
+    color: #888;
+  }
+
+  .customer-dropdown-empty {
+    color: #666;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: more) {
+  .customer-dropdown-item.highlighted {
+    outline-width: 3px;
+  }
+
+  .customer-dropdown-item-name {
+    font-weight: 700;
+  }
+
+  .customer-recent-badge {
+    font-weight: 700;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .customer-dropdown-item {
+    transition: none;
+  }
+}

@@ -1,0 +1,151 @@
+/**
+ * SearchBarEnhanced Styles
+ */
+
+.search-bar-enhanced {
+  position: relative;
+  width: 100%;
+}
+
+.search-bar-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  font-size: 1.2em;
+  opacity: 0.6;
+}
+
+.scan-indicator {
+  font-size: 1.2em;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.search-mode-indicator {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.75em;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 3px;
+  background-color: #f0f0f0;
+  color: #666;
+  pointer-events: none;
+}
+
+.search-mode-indicator.scan-mode {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}
+
+/* Dropdown Styles */
+.search-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search-dropdown-empty {
+  padding: 12px;
+  text-align: center;
+  color: #999;
+  font-size: 0.9em;
+}
+
+.search-dropdown-item {
+  padding: 12px;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.15s ease;
+}
+
+.search-dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.search-dropdown-item:hover,
+.search-dropdown-item.highlighted {
+  background-color: #f5f5f5;
+}
+
+.search-dropdown-item.highlighted {
+  background-color: #e3f2fd;
+}
+
+.search-dropdown-item-name {
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.search-dropdown-item-details {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85em;
+  color: #666;
+}
+
+.search-dropdown-item-sku {
+  flex: 1;
+}
+
+.search-dropdown-item-price {
+  font-weight: 500;
+  color: #1976d2;
+}
+
+/* Keyboard focus styles */
+.search-dropdown-item:focus-visible {
+  outline: 2px solid #1976d2;
+  outline-offset: -2px;
+}
+
+/* Accessibility: High contrast mode */
+@media (prefers-contrast: more) {
+  .search-dropdown-item.highlighted {
+    background-color: #000;
+    color: #fff;
+  }
+
+  .search-dropdown-item.highlighted .search-dropdown-item-name {
+    color: #fff;
+  }
+
+  .search-dropdown-item.highlighted .search-dropdown-item-details {
+    color: #fff;
+  }
+}
+
+/* Accessibility: Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .scan-indicator {
+    animation: none;
+    opacity: 1;
+  }
+
+  .search-dropdown-item {
+    transition: none;
+  }
+}

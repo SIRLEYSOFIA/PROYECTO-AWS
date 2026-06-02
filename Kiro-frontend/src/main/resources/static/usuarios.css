@@ -1,0 +1,268 @@
+:root {
+  --bg: #fff1f7;
+  --surface: #fffafc;
+  --border: #f4bfd2;
+  --text: #3f2230;
+  --muted: #8a5f70;
+  --primary: #d85f93;
+  --danger: #e94f6f;
+  --accent: #b868a4;
+  --radius: 8px;
+  --font: 'Segoe UI', system-ui, sans-serif;
+}
+
+/* Dianys identity */
+:root {
+  --bg: #f2fbf7;
+  --surface: #ffffff;
+  --border: #a7d8c7;
+  --text: #16352d;
+  --muted: #52766c;
+  --primary: #16866f;
+  --danger: #d94664;
+  --accent: #287c99;
+}
+
+body {
+  background:
+          linear-gradient(180deg, rgba(215, 244, 232, 0.75), rgba(244, 251, 247, 0.95)),
+          var(--bg);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #16866f, #5abf9f);
+  border-color: #16866f;
+}
+
+.btn-secondary,
+.users-header,
+.users-panel {
+  background: #ffffff;
+}
+
+.role-badge.admin {
+  background: #dcfce7;
+  color: #166534;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+}
+
+.users-header {
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 20px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+h1, h2, p { margin: 0; }
+h1 { font-size: 1.35rem; }
+.users-header p, .panel-heading span { color: var(--muted); }
+
+.users-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.btn {
+  min-height: 40px;
+  padding: 8px 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  font: inherit;
+  font-weight: 800;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+.btn-secondary { background: #fff6fa; }
+.btn-danger {
+  background: var(--danger);
+  color: #fff;
+  border-color: var(--danger);
+}
+
+.users-main {
+  padding: 16px;
+  display: grid;
+  grid-template-columns: minmax(320px, 0.45fr) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.users-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.panel-heading {
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.message {
+  min-height: 24px;
+  padding: 10px 16px 0;
+  color: var(--muted);
+}
+
+.message.error {
+  color: var(--danger);
+  font-weight: 800;
+}
+
+.message.success {
+  color: #4f7b62;
+  font-weight: 800;
+}
+
+.user-form {
+  padding: 16px;
+  display: grid;
+  gap: 14px;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+.field label {
+  font-weight: 800;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.field input,
+.field select {
+  min-height: 42px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 8px 10px;
+  font: inherit;
+  background: #fff;
+}
+
+.field input:focus,
+.field select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(216, 95, 147, 0.18);
+}
+
+.table-wrapper {
+  width: 100%;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 680px;
+}
+
+th, td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: middle;
+}
+
+th {
+  background: #fff6fa;
+  color: var(--muted);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+}
+
+.role-pill {
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
+  border-radius: 999px;
+  padding: 4px 10px;
+  background: #fde7f0;
+  color: #9b466d;
+  font-weight: 800;
+}
+
+@media (max-width: 920px) {
+  .users-header,
+  .users-main {
+    grid-template-columns: 1fr;
+  }
+
+  .users-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+/* Dianys final identity override */
+:root {
+  --bg: #f2fbf7;
+  --surface: #ffffff;
+  --border: #a7d8c7;
+  --text: #16352d;
+  --muted: #52766c;
+  --primary: #16866f;
+  --danger: #d94664;
+  --accent: #287c99;
+}
+
+body {
+  background:
+          linear-gradient(180deg, rgba(215, 244, 232, 0.78), rgba(244, 251, 247, 0.96)),
+          var(--bg);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #16866f, #5abf9f);
+  border-color: #16866f;
+}
+
+.btn-secondary,
+.users-header,
+.users-panel {
+  background: #ffffff;
+}
+
+.role-pill,
+.role-badge.admin {
+  background: #dcfce7;
+  color: #166534;
+}

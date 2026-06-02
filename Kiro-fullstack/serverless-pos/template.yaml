@@ -1,0 +1,128 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Simple POS API with API Gateway, Lambda, DynamoDB products, and DynamoDB sales.
+
+Globals:
+  Function:
+    Runtime: python3.12
+    Timeout: 15
+    MemorySize: 256
+    Architectures:
+      - x86_64
+    Environment:
+      Variables:
+        PRODUCTS_TABLE_NAME: !Ref ProductsTable
+        SALES_TABLE_NAME: !Ref SalesTable
+        USERS_TABLE_NAME: !Ref UsersTable
+
+Resources:
+  PosApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      CorsConfiguration:
+        AllowOrigins:
+          - '*'
+        AllowHeaders:
+          - Content-Type
+          - Authorization
+        AllowMethods:
+          - GET
+          - POST
+          - OPTIONS
+
+  ProductsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Handler: app.handler
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ProductsTable
+      Events:
+        Products:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref PosApi
+            Path: /api/products
+            Method: ANY
+        ProductosAlias:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref PosApi
+            Path: /productos
+            Method: ANY
+        ProductSearch:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref PosApi
+            Path: /api/products/search
+            Method: GET
+
+  SalesFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Handler: app.handler
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref SalesTable
+      Events:
+        Sales:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref PosApi
+            Path: /api/sales
+            Method: ANY
+        VentasAlias:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref PosApi
+            Path: /ventas
+            Method: ANY
+
+  ProductsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: N
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+
+  SalesTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+
+  UsersTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: usuario
+          AttributeType: S
+      KeySchema:
+        - AttributeName: usuario
+          KeyType: HASH
+
+Outputs:
+  ApiBaseUrl:
+    Description: Base URL for the POS API.
+    Value: !Sub https://${PosApi}.execute-api.${AWS::Region}.amazonaws.com
+  ProductsTableName:
+    Description: DynamoDB table for products.
+    Value: !Ref ProductsTable
+  SalesTableName:
+    Description: DynamoDB table for sales.
+    Value: !Ref SalesTable
+  UsersTableName:
+    Description: DynamoDB table for users and roles.
+    Value: !Ref UsersTable

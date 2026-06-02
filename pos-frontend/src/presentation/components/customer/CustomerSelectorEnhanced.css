@@ -1,0 +1,219 @@
+/**
+ * CustomerSelectorEnhanced Styles
+ * 
+ * Styles for the searchable customer selector dropdown with keyboard navigation
+ */
+
+.customer-selector-enhanced {
+  position: relative;
+  width: 100%;
+  font-family: inherit;
+}
+
+.customer-selector-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.customer-selector-input-wrapper input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.customer-selector-input-wrapper input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.customer-icon {
+  font-size: 1.25rem;
+  margin-left: 0.5rem;
+}
+
+.customer-selected-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: #10b981;
+  color: white;
+  border-radius: 50%;
+  font-size: 0.875rem;
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+.customer-selected-display {
+  margin-top: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background-color: #f0f9ff;
+  border-left: 3px solid #2563eb;
+  border-radius: 0.25rem;
+}
+
+.customer-selected-name {
+  font-weight: 600;
+  color: #1e40af;
+  font-size: 0.95rem;
+}
+
+.customer-selected-phone {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin-top: 0.25rem;
+}
+
+/* Dropdown Styles */
+.customer-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 0.5rem;
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.customer-dropdown-item {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  border-bottom: 1px solid #f0f0f0;
+  position: relative;
+}
+
+.customer-dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.customer-dropdown-item:hover {
+  background-color: #f8f9fa;
+}
+
+.customer-dropdown-item.highlighted {
+  background-color: #dbeafe;
+  border-left: 3px solid #2563eb;
+  padding-left: calc(1rem - 3px);
+}
+
+.customer-dropdown-item-name {
+  font-weight: 600;
+  color: #1f2937;
+  font-size: 0.95rem;
+}
+
+.customer-dropdown-item-details {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.customer-dropdown-item-phone {
+  flex: 1;
+}
+
+.customer-dropdown-item-email {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.customer-recent-badge {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  font-size: 0.875rem;
+}
+
+.customer-dropdown-footer {
+  padding: 0.5rem 1rem;
+  background-color: #f9fafb;
+  border-top: 1px solid #e5e7eb;
+  font-size: 0.8rem;
+  color: #6b7280;
+  text-align: center;
+}
+
+.customer-f2-hint {
+  display: block;
+  font-style: italic;
+}
+
+/* Empty State */
+.customer-dropdown-empty {
+  max-height: none;
+}
+
+.customer-dropdown-empty .customer-dropdown-item {
+  padding: 1.5rem 1rem;
+  text-align: center;
+  cursor: default;
+}
+
+.customer-dropdown-empty .customer-dropdown-item:hover {
+  background-color: white;
+}
+
+.customer-no-results-hint {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: #9ca3af;
+  font-style: italic;
+}
+
+/* Accessibility */
+.customer-dropdown-item[role='option'][aria-selected='true'] {
+  background-color: #dbeafe;
+}
+
+.customer-selector-input-wrapper input:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* Scrollbar Styling */
+.customer-dropdown::-webkit-scrollbar {
+  width: 6px;
+}
+
+.customer-dropdown::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.customer-dropdown::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.customer-dropdown::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .customer-dropdown-item-details {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .customer-dropdown {
+    max-height: 250px;
+  }
+}

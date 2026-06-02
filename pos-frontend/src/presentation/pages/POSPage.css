@@ -1,0 +1,495 @@
+/* ============================================================
+   SIIGO STYLE POS LAYOUT
+   ============================================================ */
+
+.siigo-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #f5f7fa;
+  overflow: hidden;
+}
+
+/* Header */
+.siigo-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 56px;
+  background: linear-gradient(135deg, #0099FF 0%, #0077CC 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+}
+
+.siigo-menu-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.siigo-menu-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.siigo-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+  flex: 1;
+  margin-left: 16px;
+}
+
+.siigo-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.siigo-help-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.siigo-help-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.siigo-logo {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+/* Tabs */
+.siigo-tabs {
+  display: flex;
+  gap: 8px;
+  padding: 12px 24px;
+  background: white;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.siigo-tab {
+  padding: 8px 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px 6px 0 0;
+  background: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.siigo-tab--active {
+  background: #f0f8ff;
+  border-color: #0099FF;
+  color: #0099FF;
+  font-weight: 600;
+}
+
+.siigo-tab--new {
+  background: transparent;
+  border-style: dashed;
+  color: #0099FF;
+  border-color: #0099FF;
+}
+
+.siigo-tab:hover {
+  background: #f5f5f5;
+}
+
+/* Main Content */
+.siigo-main {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+}
+
+/* Invoice Info */
+.siigo-invoice-info {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.siigo-field-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.siigo-field-group label {
+  font-size: 14px;
+  color: #666;
+}
+
+.siigo-icon-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.siigo-icon-btn:hover {
+  background: #f0f0f0;
+}
+
+.siigo-icon-btn--danger:hover {
+  background: #ffebee;
+}
+
+.siigo-select {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  background: white;
+  cursor: pointer;
+  min-width: 200px;
+}
+
+.siigo-select--sm {
+  padding: 4px 8px;
+  font-size: 13px;
+  min-width: 120px;
+}
+
+/* Table */
+.siigo-table-section {
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+}
+
+.siigo-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.siigo-table thead {
+  background: #f5f5f5;
+}
+
+.siigo-table th {
+  padding: 12px 8px;
+  text-align: left;
+  font-weight: 600;
+  color: #666;
+  border-bottom: 2px solid #e0e0e0;
+  font-size: 13px;
+}
+
+.siigo-table td {
+  padding: 12px 8px;
+  border-bottom: 1px solid #f0f0f0;
+  vertical-align: middle;
+}
+
+.siigo-table tbody tr:hover {
+  background: #fafafa;
+}
+
+.siigo-table-amount {
+  text-align: right;
+  font-weight: 600;
+  font-family: monospace;
+}
+
+/* Quantity Control */
+.siigo-quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.siigo-qty-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.siigo-qty-btn--green {
+  background: #00D97E;
+  color: white;
+}
+
+.siigo-qty-btn--green:hover {
+  background: #00C26D;
+}
+
+.siigo-qty-input {
+  width: 50px;
+  padding: 6px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.siigo-input {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 100%;
+}
+
+.siigo-input--sm {
+  padding: 4px 8px;
+  font-size: 13px;
+  width: 80px;
+}
+
+/* Search Row */
+.siigo-search-row {
+  background: #fafafa;
+}
+
+.siigo-search-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+
+.siigo-search-input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.siigo-search-btn {
+  background: #0099FF;
+  border: none;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 4px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.siigo-search-btn:hover {
+  background: #0077CC;
+}
+
+.siigo-search-icon {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.siigo-clear-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px 8px;
+  color: #999;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.siigo-clear-btn:hover {
+  background: #f0f0f0;
+  color: #333;
+}
+
+/* Bottom Section */
+.siigo-bottom-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+/* Sales Data */
+.siigo-sales-data {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.siigo-section-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 16px 0;
+  color: #333;
+}
+
+.siigo-field {
+  margin-bottom: 16px;
+}
+
+.siigo-field label {
+  display: block;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.siigo-new-btn {
+  background: #00D4FF;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background 0.2s;
+}
+
+.siigo-new-btn:hover {
+  background: #00B8E6;
+}
+
+/* Totals */
+.siigo-totals {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.siigo-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+}
+
+.siigo-total-row span {
+  color: #666;
+}
+
+.siigo-total-row strong {
+  font-family: monospace;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Action Buttons */
+.siigo-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.siigo-btn {
+  padding: 14px 32px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.siigo-btn--cancel {
+  background: transparent;
+  color: #00D4FF;
+  border: 2px solid #00D4FF;
+}
+
+.siigo-btn--cancel:hover {
+  background: #f0f9ff;
+}
+
+.siigo-btn--charge {
+  background: #00D97E;
+  color: white;
+  flex: 1;
+  font-size: 18px;
+  padding: 16px 32px;
+}
+
+.siigo-btn--charge:hover:not(:disabled) {
+  background: #00C26D;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 217, 126, 0.3);
+}
+
+.siigo-btn--charge:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+/* Receipt View */
+.siigo-receipt-view {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 32px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .siigo-bottom-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .siigo-main {
+    padding: 16px;
+  }
+
+  .siigo-table-section {
+    overflow-x: scroll;
+  }
+
+  .siigo-actions {
+    flex-direction: column;
+  }
+
+  .siigo-btn--charge {
+    width: 100%;
+  }
+}
