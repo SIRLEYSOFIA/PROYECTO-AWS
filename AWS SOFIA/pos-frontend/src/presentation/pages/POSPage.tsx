@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useCatalog } from '@presentation/hooks/useCatalog'
 import { useOrder } from '@presentation/hooks/useOrder'
 import { useSession } from '@presentation/hooks/useSession'
@@ -19,6 +19,29 @@ import { ProductViewModel } from '@application/view-models/ProductViewModel'
 import { Discount } from '@domain/value-objects/Discount'
 import './POSPage.css'
 
+type ModuleKey = 'pos' | 'productos' | 'ventas' | 'cuadre' | 'usuarios'
+
+interface LocalUser {
+  username: string
+  role: 'ADMIN' | 'CAJERO'
+  status: 'Activo' | 'Bloqueado'
+}
+
+const MODULES: { id: ModuleKey; label: string }[] = [
+  { id: 'pos', label: 'POS' },
+  { id: 'productos', label: 'Productos' },
+  { id: 'ventas', label: 'Ventas' },
+  { id: 'cuadre', label: 'Cuadre' },
+  { id: 'usuarios', label: 'Usuarios' },
+]
+
+const formatCurrency = (amount: number) =>
+  new Intl.NumberFormat('es-CO', {
+    style: 'currency',
+    currency: 'COP',
+    maximumFractionDigits: 0,
+  }).format(amount)
+
 export function POSPage() {
   const { logout } = useSession()
   const { lock } = useSessionStore()
@@ -28,6 +51,18 @@ export function POSPage() {
   const [invoiceType, setInvoiceType] = useState('Facturación POS')
   const [customerSearch, setCustomerSearch] = useState('Consumidor Final')
   const [sellerSearch, setSellerSearch] = useState('Sofia')
+  const [activeModule, setActiveModule] = useState<ModuleKey>('pos')
+  const [clock, setClock] = useState(() => new Date())
+  const [inventoryFilter, setInventoryFilter] = useState('')
+  const [declaredCash, setDeclaredCash] = useState('')
+  const [openingCash, setOpeningCash] = useState('0')
+  const [newUser, setNewUser] = useState({ username: '', password: '', role: 'CAJERO' as LocalUser['role'] })
+  const [localUsers, setLocalUsers] = useState<LocalUser[]>([
+    { username: 'SofiaInPensante', role: 'ADMIN', status: 'Activo' },
+    { username: 'SOF', role: 'ADMIN', status: 'Activo' },
+    { username: 'cajera-sofia', role: 'CAJERO', status: 'Activo' },
+  ])
+  const searchInputRef = useRef<HTMLInputElement>(null)
 
   const {
     products, categories, selectedCategory, setSelectedCategory,
@@ -68,6 +103,48 @@ export function POSPage() {
   }, [searchQuery, setQuery])
 
   const visibleProducts = products.slice(0, 8)
+  const filteredProducts = useMemo(() => {
+    const filter = inventoryFilter.trim().toLowerCase()
+    if (!filter) return products
+    return products.filter((product) =>
+      [product.name, product.sku, product.barcode, product.categoryId]
+        .some((value) => value.toLowerCase().includes(filter))
+    )
+  }, [inventoryFilter, products])
+
+  const soldOrders = useMemo(() => orders.filter((order) => order.status === 'paid'), [orders])
+  const completedOrders = soldOrders.length > 0 ? soldOrders : orders.filter((order) => order.items.length > 0)
+  const salesTotal = completedOrders.reduce((acc, order) => acc + order.total.toAmount(), 0)
+  const salesItemCount = completedOrders.reduce(
+    (acc, order) => acc + order.items.reduce((itemAcc, item) => itemAcc + item.quantity, 0),
+    0,
+  )
+  const cashExpected = Number(openingCash || 0) + salesTotal
+  const cashDifference = Number(declaredCash || 0) - cashExpected
+
+  useEffect(() => {
+    const intervalId = window.setInterval(() => setClock(new Date()), 1000)
+    return () => window.clearInterval(intervalId)
+  }, [])
+
+  const handleCreateUser = useCallback((event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const username = newUser.username.trim()
+    if (!username || !newUser.password.trim()) return
+    setLocalUsers((current) => [
+      { username, role: newUser.role, status: 'Activo' },
+      ...current.filter((user) => user.username.toLowerCase() !== username.toLowerCase()),
+    ])
+    setNewUser({ username: '', password: '', role: 'CAJERO' })
+  }, [newUser])
+
+  const toggleUserStatus = useCallback((username: string) => {
+    setLocalUsers((current) => current.map((user) => (
+      user.username === username
+        ? { ...user, status: user.status === 'Activo' ? 'Bloqueado' : 'Activo' }
+        : user
+    )))
+  }, [])
 
   // Increase quantity
   const handleIncrease = useCallback(async (itemId: string) => {
@@ -138,6 +215,42 @@ export function POSPage() {
     openPaymentModal()
   }, [activeOrderVM, confirmOrder, openPaymentModal])
 
+  useEffect(() => {
+    function handleShortcuts(event: KeyboardEvent) {
+      const target = event.target as HTMLElement | null
+      const isTyping = target && ['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName)
+
+      if (event.key === 'F2') {
+        event.preventDefault()
+        setActiveModule('pos')
+        window.setTimeout(() => {
+          searchInputRef.current?.focus()
+          searchInputRef.current?.select()
+        })
+      }
+
+      if (event.key === 'F8') {
+        event.preventDefault()
+        if (activeOrderVM && !activeOrderVM.isEmpty) handleCharge()
+      }
+
+      if (event.key === '?' && !isTyping) {
+        event.preventDefault()
+        alert('Atajos: F2 buscar producto, F8 cobrar, ? ayuda, Ctrl+L limpiar busqueda.')
+      }
+
+      if (event.ctrlKey && event.key.toLowerCase() === 'l') {
+        event.preventDefault()
+        setSearchQuery('')
+        setQuery('')
+        searchInputRef.current?.focus()
+      }
+    }
+
+    window.addEventListener('keydown', handleShortcuts)
+    return () => window.removeEventListener('keydown', handleShortcuts)
+  }, [activeOrderVM, handleCharge, setQuery])
+
   // Handle discount apply
   const handleDiscountApply = useCallback(async (discount: Discount) => {
     const role = session?.role ?? 'cashier'
@@ -197,24 +310,34 @@ export function POSPage() {
       {/* Header */}
       <header className="siigo-header">
         <button className="siigo-menu-btn">☰</button>
-        <h1 className="siigo-title">Nueva Factura de venta</h1>
+        <h1 className="siigo-title">POS Sofia</h1>
         <div className="siigo-header-actions">
-          <button className="siigo-help-btn">Ayuda ▼</button>
+          <span className="siigo-header-meta">{session?.username ?? 'Sofia'} · {clock.toLocaleTimeString('es-CO')}</span>
+          <button className="siigo-help-btn" onClick={() => alert('Atajos: F2 buscar, F8 cobrar, Ctrl+L limpiar busqueda.')}>Ayuda ▼</button>
+          <button className="siigo-help-btn" onClick={lock}>Bloquear</button>
+          <button className="siigo-help-btn" onClick={logout}>Salir</button>
           <div className="siigo-logo">POS</div>
         </div>
       </header>
 
       {/* Tabs */}
       <div className="siigo-tabs">
-        <button className="siigo-tab siigo-tab--active">
-          precuenta ×
-        </button>
+        {MODULES.map((module) => (
+          <button
+            key={module.id}
+            className={`siigo-tab ${activeModule === module.id ? 'siigo-tab--active' : ''}`}
+            onClick={() => setActiveModule(module.id)}
+          >
+            {module.label}
+          </button>
+        ))}
         <button className="siigo-tab siigo-tab--new">
           + Nueva precuenta
         </button>
       </div>
 
       {/* Main Content */}
+      {activeModule === 'pos' && (
       <main className="siigo-main">
         {/* Invoice Info */}
         <section className="siigo-invoice-info">
@@ -320,6 +443,7 @@ export function POSPage() {
                 <td colSpan={7}>
                   <div className="siigo-search-field">
                     <input
+                      ref={searchInputRef}
                       type="text"
                       className="siigo-search-input"
                       placeholder="Búsqueda por código / nombre / referencia"
@@ -429,6 +553,216 @@ export function POSPage() {
           </button>
         </div>
       </main>
+      )}
+
+      {activeModule === 'productos' && (
+        <main className="siigo-main">
+          <section className="siigo-backoffice-head">
+            <div>
+              <h2>Inventario del mostrador</h2>
+              <p>Consulta productos de DynamoDB, filtra por nombre, codigo o categoria y agregalos directo a la venta.</p>
+            </div>
+            <button className="siigo-btn siigo-btn--charge" onClick={() => setActiveModule('pos')}>Abrir POS</button>
+          </section>
+
+          <section className="siigo-summary-grid">
+            <article className="siigo-summary-card">
+              <span>Productos</span>
+              <strong>{products.length}</strong>
+            </article>
+            <article className="siigo-summary-card">
+              <span>Activos</span>
+              <strong>{products.filter((product) => product.isActive).length}</strong>
+            </article>
+            <article className="siigo-summary-card">
+              <span>Bajo stock</span>
+              <strong>{products.filter((product) => product.isLowStock || product.isOutOfStock).length}</strong>
+            </article>
+          </section>
+
+          <section className="siigo-table-section">
+            <div className="siigo-panel-toolbar">
+              <input
+                className="siigo-input"
+                value={inventoryFilter}
+                onChange={(event) => setInventoryFilter(event.target.value)}
+                placeholder="Buscar producto, codigo o categoria"
+              />
+              <button className="siigo-search-btn" onClick={() => setQuery(inventoryFilter)}>Recargar</button>
+            </div>
+            <table className="siigo-table">
+              <thead>
+                <tr>
+                  <th>Producto</th>
+                  <th>Codigo</th>
+                  <th>Categoria</th>
+                  <th>Precio</th>
+                  <th>Stock</th>
+                  <th>Estado</th>
+                  <th>Accion</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredProducts.map((product) => (
+                  <tr key={product.id}>
+                    <td>{product.name}</td>
+                    <td>{product.barcode || product.sku}</td>
+                    <td>{product.categoryId}</td>
+                    <td className="siigo-table-amount">{product.priceFormatted}</td>
+                    <td>{product.stock}</td>
+                    <td>{product.isActive ? 'Activo' : 'Inactivo'}</td>
+                    <td><button className="siigo-icon-btn" onClick={() => handleProductSelect(product)}>Agregar</button></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </section>
+        </main>
+      )}
+
+      {activeModule === 'ventas' && (
+        <main className="siigo-main">
+          <section className="siigo-backoffice-head">
+            <div>
+              <h2>Historial de ventas</h2>
+              <p>Resumen local de precuentas y ventas procesadas durante la sesion.</p>
+            </div>
+            <button className="siigo-search-btn" onClick={createNewOrder}>Nueva venta</button>
+          </section>
+
+          <section className="siigo-summary-grid">
+            <article className="siigo-summary-card">
+              <span>Ventas</span>
+              <strong>{completedOrders.length}</strong>
+            </article>
+            <article className="siigo-summary-card">
+              <span>Total vendido</span>
+              <strong>{formatCurrency(salesTotal)}</strong>
+            </article>
+            <article className="siigo-summary-card">
+              <span>Articulos</span>
+              <strong>{salesItemCount}</strong>
+            </article>
+          </section>
+
+          <section className="siigo-table-section">
+            <table className="siigo-table">
+              <thead>
+                <tr>
+                  <th>Venta</th>
+                  <th>Fecha</th>
+                  <th>Cajera</th>
+                  <th>Articulos</th>
+                  <th>Subtotal</th>
+                  <th>Total</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+              <tbody>
+                {completedOrders.length === 0 && (
+                  <tr><td colSpan={7}>Aun no hay ventas registradas en esta sesion.</td></tr>
+                )}
+                {completedOrders.map((order) => (
+                  <tr key={order.id}>
+                    <td>{order.id.slice(0, 8)}</td>
+                    <td>{order.createdAt.toLocaleString('es-CO')}</td>
+                    <td>{session?.username ?? order.cashierId}</td>
+                    <td>{order.items.reduce((acc, item) => acc + item.quantity, 0)}</td>
+                    <td className="siigo-table-amount">{formatCurrency(order.subtotal.toAmount())}</td>
+                    <td className="siigo-table-amount">{formatCurrency(order.total.toAmount())}</td>
+                    <td>{order.status}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </section>
+        </main>
+      )}
+
+      {activeModule === 'cuadre' && (
+        <main className="siigo-main">
+          <section className="siigo-backoffice-head">
+            <div>
+              <h2>Cuadre de caja</h2>
+              <p>Calcula base inicial, efectivo esperado y diferencia de cierre.</p>
+            </div>
+            <span className="siigo-status-pill">Turno {shift?.id.slice(0, 8) ?? 'local'}</span>
+          </section>
+
+          <section className="siigo-cash-filters">
+            <label>Base inicial<input className="siigo-input" type="number" min="0" step="100" value={openingCash} onChange={(event) => setOpeningCash(event.target.value)} /></label>
+            <label>Efectivo contado<input className="siigo-input" type="number" min="0" step="100" value={declaredCash} onChange={(event) => setDeclaredCash(event.target.value)} /></label>
+            <label>Cajera<input className="siigo-input" value={session?.username ?? 'Sofia'} readOnly /></label>
+          </section>
+
+          <section className="siigo-summary-grid">
+            <article className="siigo-summary-card"><span>Ventas</span><strong>{completedOrders.length}</strong></article>
+            <article className="siigo-summary-card"><span>Total vendido</span><strong>{formatCurrency(salesTotal)}</strong></article>
+            <article className="siigo-summary-card"><span>Efectivo esperado</span><strong>{formatCurrency(cashExpected)}</strong></article>
+            <article className={`siigo-summary-card ${cashDifference < 0 ? 'siigo-summary-card--warn' : ''}`}><span>Diferencia</span><strong>{formatCurrency(cashDifference)}</strong></article>
+          </section>
+
+          <section className="siigo-table-section">
+            <h3 className="siigo-section-title">Ventas incluidas</h3>
+            <table className="siigo-table">
+              <thead>
+                <tr><th>Hora</th><th>Venta</th><th>Pago</th><th>Total</th></tr>
+              </thead>
+              <tbody>
+                {completedOrders.length === 0 && <tr><td colSpan={4}>Sin movimientos para cuadrar.</td></tr>}
+                {completedOrders.map((order) => (
+                  <tr key={order.id}>
+                    <td>{order.createdAt.toLocaleTimeString('es-CO')}</td>
+                    <td>{order.id.slice(0, 8)}</td>
+                    <td>{order.status === 'paid' ? 'Pagado' : 'Pendiente'}</td>
+                    <td className="siigo-table-amount">{formatCurrency(order.total.toAmount())}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </section>
+        </main>
+      )}
+
+      {activeModule === 'usuarios' && (
+        <main className="siigo-main">
+          <section className="siigo-backoffice-head">
+            <div>
+              <h2>Usuarios y roles</h2>
+              <p>Gestion local de usuarios demo para administradores y cajeros.</p>
+            </div>
+          </section>
+
+          <div className="siigo-admin-grid">
+            <section className="siigo-table-section">
+              <h3 className="siigo-section-title">Crear usuario</h3>
+              <form className="siigo-user-form" onSubmit={handleCreateUser}>
+                <label>Usuario<input className="siigo-input" value={newUser.username} onChange={(event) => setNewUser((user) => ({ ...user, username: event.target.value }))} /></label>
+                <label>Clave<input className="siigo-input" type="password" value={newUser.password} onChange={(event) => setNewUser((user) => ({ ...user, password: event.target.value }))} /></label>
+                <label>Rol<select className="siigo-select" value={newUser.role} onChange={(event) => setNewUser((user) => ({ ...user, role: event.target.value as LocalUser['role'] }))}><option>CAJERO</option><option>ADMIN</option></select></label>
+                <button className="siigo-btn siigo-btn--charge" type="submit">Guardar usuario</button>
+              </form>
+            </section>
+
+            <section className="siigo-table-section">
+              <h3 className="siigo-section-title">Usuarios registrados</h3>
+              <table className="siigo-table">
+                <thead><tr><th>Usuario</th><th>Rol</th><th>Estado</th><th>Accion</th></tr></thead>
+                <tbody>
+                  {localUsers.map((user) => (
+                    <tr key={user.username}>
+                      <td>{user.username}</td>
+                      <td>{user.role}</td>
+                      <td>{user.status}</td>
+                      <td><button className="siigo-icon-btn" onClick={() => toggleUserStatus(user.username)}>{user.status === 'Activo' ? 'Bloquear' : 'Activar'}</button></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </section>
+          </div>
+        </main>
+      )}
 
       {/* Modals */}
       <DiscountModal

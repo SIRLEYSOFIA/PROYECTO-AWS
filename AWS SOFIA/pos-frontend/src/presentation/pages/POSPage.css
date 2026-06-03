@@ -52,6 +52,13 @@
   gap: 16px;
 }
 
+.siigo-header-meta {
+  font-size: 13px;
+  font-weight: 600;
+  opacity: 0.95;
+  white-space: nowrap;
+}
+
 .siigo-help-btn {
   background: rgba(255, 255, 255, 0.2);
   border: none;
@@ -258,6 +265,114 @@
 
 .siigo-product-status--error {
   color: #b91c1c;
+}
+
+.siigo-backoffice-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.siigo-backoffice-head h2 {
+  margin: 0 0 6px;
+  font-size: 22px;
+  color: #1f2937;
+}
+
+.siigo-backoffice-head p {
+  margin: 0;
+  color: #667085;
+  font-size: 14px;
+}
+
+.siigo-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.siigo-summary-card {
+  background: white;
+  border: 1px solid #e6edf5;
+  border-radius: 8px;
+  padding: 18px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.siigo-summary-card span {
+  display: block;
+  color: #667085;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.siigo-summary-card strong {
+  display: block;
+  color: #172554;
+  font-size: 24px;
+  overflow-wrap: anywhere;
+}
+
+.siigo-summary-card--warn strong {
+  color: #b91c1c;
+}
+
+.siigo-panel-toolbar {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.siigo-status-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: #eaf6ff;
+  color: #0077cc;
+  font-weight: 700;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.siigo-cash-filters {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(160px, 1fr));
+  gap: 14px;
+  background: white;
+  border-radius: 8px;
+  padding: 18px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.siigo-cash-filters label,
+.siigo-user-form label {
+  display: grid;
+  gap: 8px;
+  color: #667085;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.siigo-admin-grid {
+  display: grid;
+  grid-template-columns: minmax(260px, 360px) 1fr;
+  gap: 16px;
+}
+
+.siigo-user-form {
+  display: grid;
+  gap: 14px;
 }
 
 .siigo-table-amount {
@@ -521,6 +636,15 @@
   .siigo-bottom-section {
     grid-template-columns: 1fr;
   }
+
+  .siigo-admin-grid,
+  .siigo-cash-filters {
+    grid-template-columns: 1fr;
+  }
+
+  .siigo-header-meta {
+    display: none;
+  }
 }
 
 @media (max-width: 768px) {
@@ -538,5 +662,29 @@
 
   .siigo-btn--charge {
     width: 100%;
+  }
+
+  .siigo-header {
+    padding: 0 12px;
+  }
+
+  .siigo-header-actions {
+    gap: 8px;
+  }
+
+  .siigo-help-btn {
+    padding: 8px 10px;
+  }
+
+  .siigo-tabs {
+    overflow-x: auto;
+    padding: 10px 12px;
+  }
+
+  .siigo-backoffice-head,
+  .siigo-panel-toolbar {
+    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: stretch;
   }
 }
