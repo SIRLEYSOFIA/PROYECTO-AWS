@@ -31,14 +31,16 @@ export function useSession() {
     try {
       const s = await container.authService.login({ username, password })
       setSession(s)
+      const openedShift = await container.openShift.execute(0)
+      setShift(openedShift)
       return s
     } catch {
-      setError('Invalid credentials. Please try again.')
+      setError('Credenciales incorrectas. Usa SofiaInPensante / SOF2026.')
       return null
     } finally {
       setLoading(false)
     }
-  }, [setSession])
+  }, [setSession, setShift])
 
   const logout = useCallback(async () => {
     await container.authService.logout()

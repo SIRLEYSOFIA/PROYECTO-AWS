@@ -1,6 +1,6 @@
-export const APP_NAME = 'SuperPOS'
-export const COMPANY_NAME = 'SuperMarket XYZ'
-export const COMPANY_TAX_ID = '900-XXX-XXX'
+export const APP_NAME = 'POS Sofia'
+export const COMPANY_NAME = 'Proyecto AWS Sofia'
+export const COMPANY_TAX_ID = '587861288195'
 export const DEFAULT_TAX_RATE = 0.08 // 8%
 export const SESSION_TIMEOUT_MS = 10 * 60 * 1000 // 10 minutes
 export const SEARCH_DEBOUNCE_MS = 200

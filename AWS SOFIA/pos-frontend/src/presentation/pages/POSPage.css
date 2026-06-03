@@ -213,6 +213,53 @@
   background: #fafafa;
 }
 
+.siigo-product-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.siigo-product-chip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 46px;
+  padding: 10px 12px;
+  border: 1px solid #d6e6f7;
+  border-radius: 6px;
+  background: #f8fcff;
+  color: #1f2937;
+  cursor: pointer;
+  text-align: left;
+}
+
+.siigo-product-chip:hover {
+  border-color: #0099ff;
+  background: #eef8ff;
+}
+
+.siigo-product-chip strong,
+.siigo-product-chip span {
+  overflow-wrap: anywhere;
+}
+
+.siigo-product-chip span {
+  flex-shrink: 0;
+  color: #0077cc;
+  font-weight: 700;
+}
+
+.siigo-product-status {
+  color: #666;
+  font-size: 14px;
+}
+
+.siigo-product-status--error {
+  color: #b91c1c;
+}
+
 .siigo-table-amount {
   text-align: right;
   font-weight: 600;

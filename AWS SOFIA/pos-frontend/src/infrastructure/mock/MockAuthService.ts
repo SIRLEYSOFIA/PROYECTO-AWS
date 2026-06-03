@@ -1,6 +1,8 @@
 import { IAuthService, Credentials, Session } from '@application/ports/services/IAuthService'
 
 const MOCK_USERS = [
+  { username: 'SofiaInPensante', password: 'SOF2026', role: 'admin' as const, pin: '2026' },
+  { username: 'SOF', password: 'SOF2026', role: 'admin' as const, pin: '2026' },
   { username: 'cashier', password: '1234', role: 'cashier' as const, pin: '0000' },
   { username: 'supervisor', password: '1234', role: 'supervisor' as const, pin: '9999' },
   { username: 'admin', password: '1234', role: 'admin' as const, pin: '1111' },
@@ -14,7 +16,7 @@ export class MockAuthService implements IAuthService {
     const user = MOCK_USERS.find(
       (u) => u.username === credentials.username && u.password === credentials.password,
     )
-    if (!user) throw new Error('Invalid credentials')
+    if (!user) throw new Error('Credenciales incorrectas')
 
     const session: Session = {
       userId: `user-${user.username}`,

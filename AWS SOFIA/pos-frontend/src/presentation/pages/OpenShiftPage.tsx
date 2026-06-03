@@ -31,19 +31,19 @@ export function OpenShiftPage() {
       <div className="shift-card">
         <div className="shift-card__header">
           <span style={{ fontSize: '3rem' }}>🏪</span>
-          <h2>Open Cash Shift</h2>
-          <p>Declare your opening cash to start the shift</p>
+          <h2>Abrir turno de caja</h2>
+          <p>Declara el efectivo inicial para empezar</p>
         </div>
 
         <form onSubmit={handleOpen} className="shift-form">
           <Input
-            label="Opening Cash ($)"
+            label="Efectivo inicial"
             type="number"
             min="0"
             step="0.01"
             value={cash}
             onChange={(e) => { setCash(e.target.value); setError('') }}
-            placeholder="e.g. 200.00"
+            placeholder="Ej. 200000"
             autoFocus
             required
           />
@@ -58,12 +58,12 @@ export function OpenShiftPage() {
             loading={loading}
             disabled={!cash}
           >
-            Open Shift
+            Abrir turno
           </Button>
         </form>
 
         <button className="pin-logout-link" onClick={logout}>
-          ← Back to login
+          Volver al login
         </button>
       </div>
     </div>

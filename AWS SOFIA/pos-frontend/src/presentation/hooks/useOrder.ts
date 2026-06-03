@@ -28,9 +28,10 @@ export function useOrder() {
   const addProduct = useCallback(async (product: ProductViewModel) => {
     const order = ensureActiveOrder()
     // Fetch full domain product
-    const domainProduct = await container.searchProducts.execute({ query: product.sku })
-    const found = domainProduct.find((p) => p.id === product.id)
-    if (!found) { addToast('Product not found', 'error'); return }
+    const byBarcode = await container.getProductByBarcode.execute(product.barcode)
+    const found = byBarcode
+      ?? (await container.searchProducts.execute({ query: product.name })).find((p) => p.id === product.id)
+    if (!found) { addToast('Producto no encontrado', 'error'); return }
     try {
       const updated = await container.addItemToOrder.execute(order, found)
       upsertOrder(updated)

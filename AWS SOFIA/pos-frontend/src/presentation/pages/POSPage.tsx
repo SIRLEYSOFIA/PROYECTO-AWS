@@ -27,7 +27,7 @@ export function POSPage() {
   const [invoiceName, setInvoiceName] = useState('Precuenta')
   const [invoiceType, setInvoiceType] = useState('Facturación POS')
   const [customerSearch, setCustomerSearch] = useState('Consumidor Final')
-  const [sellerSearch, setSellerSearch] = useState('Natalia')
+  const [sellerSearch, setSellerSearch] = useState('Sofia')
 
   const {
     products, categories, selectedCategory, setSelectedCategory,
@@ -66,6 +66,8 @@ export function POSPage() {
     if (!searchQuery.trim()) return
     setQuery(searchQuery)
   }, [searchQuery, setQuery])
+
+  const visibleProducts = products.slice(0, 8)
 
   // Increase quantity
   const handleIncrease = useCallback(async (itemId: string) => {
@@ -286,13 +288,13 @@ export function POSPage() {
                     <input 
                       type="number" 
                       className="siigo-input siigo-input--sm"
-                      value={item.discountPercentage}
+                      value={item.hasDiscount ? item.discountLabel : '0'}
                       readOnly
                     />
                   </td>
                   <td>
                     <select className="siigo-select siigo-select--sm">
-                      <option>IVA {item.taxPercentage}%</option>
+                      <option>IVA 0%</option>
                     </select>
                   </td>
                   <td>
@@ -300,7 +302,7 @@ export function POSPage() {
                       <option>Impuestos</option>
                     </select>
                   </td>
-                  <td className="siigo-table-amount">{item.subtotalFormatted}</td>
+                  <td className="siigo-table-amount">{item.lineTotalFormatted}</td>
                   <td>
                     <button 
                       className="siigo-icon-btn siigo-icon-btn--danger"
@@ -322,7 +324,10 @@ export function POSPage() {
                       className="siigo-search-input"
                       placeholder="Búsqueda por código / nombre / referencia"
                       value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
+                      onChange={(e) => {
+                        setSearchQuery(e.target.value)
+                        setQuery(e.target.value)
+                      }}
                       onKeyDown={(e) => {
                         if (e.key === 'Enter') handleSearch()
                       }}
@@ -336,6 +341,21 @@ export function POSPage() {
               </tr>
             </tbody>
           </table>
+          <div className="siigo-product-results">
+            {loading && <span className="siigo-product-status">Cargando productos...</span>}
+            {error && <span className="siigo-product-status siigo-product-status--error">{error}</span>}
+            {!loading && visibleProducts.map((product) => (
+              <button
+                key={product.id}
+                className="siigo-product-chip"
+                type="button"
+                onClick={() => handleProductSelect(product)}
+              >
+                <strong>{product.name}</strong>
+                <span>{product.priceFormatted}</span>
+              </button>
+            ))}
+          </div>
         </section>
 
         {/* Bottom Section */}
@@ -382,7 +402,7 @@ export function POSPage() {
             </div>
             <div className="siigo-total-row">
               <span>Descuentos:</span>
-              <strong>{activeOrderVM?.discountFormatted || '$0'}</strong>
+              <strong>{activeOrderVM?.orderDiscountFormatted || '$0'}</strong>
             </div>
             <div className="siigo-total-row">
               <span>Subtotal:</span>

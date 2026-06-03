@@ -6,8 +6,8 @@ import { APP_NAME } from '@shared/constants'
 
 export function LoginPage() {
   const { login, loading, error } = useSession()
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const [username, setUsername] = useState('SofiaInPensante')
+  const [password, setPassword] = useState('SOF2026')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -20,26 +20,26 @@ export function LoginPage() {
         <div className="login-card__header">
           <span className="login-logo">🛒</span>
           <h1 className="login-title">{APP_NAME}</h1>
-          <p className="login-subtitle">Point of Sale System</p>
+          <p className="login-subtitle">Punto de venta conectado a AWS</p>
         </div>
 
         <form onSubmit={handleSubmit} className="login-form" noValidate>
           <Input
-            label="Username"
+            label="Usuario"
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            placeholder="cashier / supervisor / admin"
+            placeholder="SofiaInPensante"
             autoComplete="username"
             autoFocus
             required
           />
           <Input
-            label="Password"
+            label="Clave"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter password (1234)"
+            placeholder="SOF2026"
             autoComplete="current-password"
             required
           />
@@ -58,12 +58,12 @@ export function LoginPage() {
             loading={loading}
             disabled={!username || !password}
           >
-            Sign In
+            Entrar
           </Button>
         </form>
 
         <p className="login-hint">
-          Demo: <strong>cashier / 1234</strong> · supervisor / 1234 · admin / 1234
+          Demo: <strong>SofiaInPensante / SOF2026</strong>
         </p>
       </div>
     </div>
