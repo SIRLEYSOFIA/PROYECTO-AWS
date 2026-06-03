@@ -1,4 +1,4 @@
-# Serverless POS
+# Serverless POS Sofia
 
 Arquitectura simple del tablero:
 
@@ -39,22 +39,14 @@ Después del deploy, toma el output `ProductsTableName` y ejecuta:
 python3 scripts/seed_products.py --table NOMBRE_DE_LA_TABLA
 ```
 
-El script carga los productos activos de `frontend/data/productos.json`.
-
-## Pantallas conectadas a AWS
-
-Con `configure-frontend.sh serverless`, estas pantallas usan API Gateway + Lambda + DynamoDB:
-
-```text
-productos.html
-pos.html
-ventas.html
-```
+El script carga los productos definidos en `seed-products.json`.
 
 ## Conectar el frontend
 
-Desde la carpeta `Kiro-fullstack`, usa:
+El frontend React usa la URL de API Gateway mediante la variable:
 
-```bash
-./configure-frontend.sh serverless https://TU_API.execute-api.REGION.amazonaws.com
+```text
+VITE_API_BASE_URL
 ```
+
+En GitHub Pages esta variable se define en `.github/workflows/pages.yml`.
