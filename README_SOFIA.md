@@ -1,4 +1,4 @@
-# Proyecto Dianys - POS Serverless
+# Proyecto AWS Sofia - POS Serverless
 
 Sistema POS web con frontend HTML5/CSS/JavaScript y backend serverless en AWS.
 
@@ -7,13 +7,13 @@ Sistema POS web con frontend HTML5/CSS/JavaScript y backend serverless en AWS.
 Frontend local:
 
 ```bash
-/home/pablitoinpensante/Documentos/Aws Global/Proyecto AWs Dianys/Kiro-frontend
+Kiro-frontend
 ```
 
 Backend serverless:
 
 ```bash
-/home/pablitoinpensante/Documentos/Aws Global/Proyecto AWs Dianys/Kiro-fullstack/serverless-pos
+Kiro-fullstack/serverless-pos
 ```
 
 ## Arquitectura
@@ -28,7 +28,7 @@ Se eligio JavaScript vanilla porque el proyecto necesita demostrar fundamentos: 
 ## Ejecutar localmente
 
 ```bash
-cd "/home/pablitoinpensante/Documentos/Aws Global/Proyecto AWs Dianys/Kiro-frontend"
+cd Kiro-frontend
 mvn spring-boot:run -Dspring-boot.run.arguments=--server.port=8082
 ```
 
@@ -55,7 +55,7 @@ El frontend lee la URL desde:
 Kiro-frontend/src/main/resources/static/config.js
 ```
 
-La API actual de Dianys esta configurada como:
+La API actual esta configurada como:
 
 ```text
 https://nl5m5jcqcj.execute-api.us-east-2.amazonaws.com
@@ -104,7 +104,7 @@ Tomar capturas de:
 ## Despliegue serverless
 
 ```bash
-cd "/home/pablitoinpensante/Documentos/Aws Global/Proyecto AWs Dianys/Kiro-fullstack/serverless-pos"
+cd Kiro-fullstack/serverless-pos
 sam build
 sam deploy --guided
 ```

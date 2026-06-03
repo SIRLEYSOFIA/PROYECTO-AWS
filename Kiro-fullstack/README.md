@@ -29,10 +29,10 @@ cd frontend
 mvn spring-boot:run
 ```
 
-El frontend independiente de Dianys se ejecuta en:
+El frontend independiente se ejecuta en:
 
 ```bash
-cd "/home/pablitoinpensante/Documentos/Aws Global/Proyecto AWs Dianys/Kiro-frontend"
+cd ../Kiro-frontend
 mvn spring-boot:run -Dspring-boot.run.arguments=--server.port=8082
 ```
 

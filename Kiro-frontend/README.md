@@ -14,7 +14,7 @@ Se usa JavaScript vanilla porque permite evidenciar directamente eventos del DOM
 ## Ejecutar Local
 
 ```bash
-cd "/home/pablitoinpensante/Documentos/Aws Global/Proyecto AWs Dianys/Kiro-frontend"
+cd Kiro-frontend
 mvn spring-boot:run -Dspring-boot.run.arguments=--server.port=8082
 ```
 
