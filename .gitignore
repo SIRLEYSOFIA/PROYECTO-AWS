@@ -17,6 +17,7 @@ __pycache__/
 *.pyc
 *.zip
 aws-apigateway-ready/01-http-api-pos/aws/
+AWS SOFIA/aws-apigateway-ready/01-http-api-pos/aws/
 
 # Logs
 logs/

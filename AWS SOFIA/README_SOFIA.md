@@ -7,13 +7,13 @@ Sistema POS web para Sofia con frontend, API Gateway, Lambdas y DynamoDB.
 Frontend local:
 
 ```bash
-Kiro-frontend
+AWS SOFIA/Kiro-frontend
 ```
 
 Backend serverless:
 
 ```bash
-Kiro-fullstack/serverless-pos
+AWS SOFIA/Kiro-fullstack/serverless-pos
 ```
 
 ## Arquitectura
@@ -28,7 +28,7 @@ Se eligio JavaScript vanilla porque el proyecto necesita demostrar fundamentos: 
 ## Ejecutar localmente
 
 ```bash
-cd Kiro-frontend
+cd "AWS SOFIA/Kiro-frontend"
 mvn spring-boot:run -Dspring-boot.run.arguments=--server.port=8082
 ```
 
@@ -52,7 +52,7 @@ Estas credenciales corresponden a la usuaria principal del proyecto.
 El frontend lee la URL desde:
 
 ```text
-Kiro-frontend/src/main/resources/static/config.js
+AWS SOFIA/Kiro-frontend/src/main/resources/static/config.js
 ```
 
 La API actual del proyecto Sofia esta configurada como:
@@ -79,17 +79,17 @@ GET  /api/sales
 Specs del frontend:
 
 ```text
-Kiro-frontend/.kiro/specs/pos-frontend/requirements.md
-Kiro-frontend/.kiro/specs/pos-frontend/design.md
-Kiro-frontend/.kiro/specs/pos-frontend/tasks.md
+AWS SOFIA/Kiro-frontend/.kiro/specs/pos-frontend/requirements.md
+AWS SOFIA/Kiro-frontend/.kiro/specs/pos-frontend/design.md
+AWS SOFIA/Kiro-frontend/.kiro/specs/pos-frontend/tasks.md
 ```
 
 Specs del backend/fullstack:
 
 ```text
-Kiro-fullstack/.kiro/specs/pos-frontend/requirements.md
-Kiro-fullstack/.kiro/specs/pos-frontend/design.md
-Kiro-fullstack/.kiro/specs/pos-frontend/tasks.md
+AWS SOFIA/Kiro-fullstack/.kiro/specs/pos-frontend/requirements.md
+AWS SOFIA/Kiro-fullstack/.kiro/specs/pos-frontend/design.md
+AWS SOFIA/Kiro-fullstack/.kiro/specs/pos-frontend/tasks.md
 ```
 
 ## Capturas requeridas para entrega
@@ -104,7 +104,7 @@ Tomar capturas de:
 ## Despliegue serverless
 
 ```bash
-cd Kiro-fullstack/serverless-pos
+cd "AWS SOFIA/Kiro-fullstack/serverless-pos"
 sam build
 sam deploy --guided
 ```

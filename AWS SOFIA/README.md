@@ -23,7 +23,7 @@ pos-frontend
 Para ejecutarlo localmente:
 
 ```bash
-cd pos-frontend
+cd "AWS SOFIA/pos-frontend"
 npm install
 npm run dev
 ```
@@ -54,15 +54,15 @@ El workflow de despliegue esta en:
 Para compilar el frontend igual que GitHub Pages:
 
 ```bash
-cd pos-frontend
+cd "AWS SOFIA/pos-frontend"
 npm install
 npm run build:pages
 ```
 
 Configuracion importante:
 
-- `pos-frontend/vite.config.ts` usa `base: '/PROYECTO-AWS/'`.
-- El workflow publica `pos-frontend/dist`.
+- `AWS SOFIA/pos-frontend/vite.config.ts` usa `base: '/PROYECTO-AWS/'`.
+- El workflow publica `AWS SOFIA/pos-frontend/dist`.
 - El workflow inyecta `VITE_API_BASE_URL` con la URL del API Gateway.
 
 ## Backend AWS
@@ -70,7 +70,7 @@ Configuracion importante:
 La infraestructura serverless principal esta en:
 
 ```bash
-Kiro-fullstack/serverless-pos
+AWS SOFIA/Kiro-fullstack/serverless-pos
 ```
 
 Incluye:
