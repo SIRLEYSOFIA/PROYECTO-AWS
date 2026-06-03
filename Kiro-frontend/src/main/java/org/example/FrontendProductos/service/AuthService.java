@@ -17,8 +17,8 @@ public class AuthService {
     private final RestClient restClient;
     private final Map<String, Usuario> usuariosLocales = Map.of(
             "admin", new Usuario("admin", "admin123", "activo", "ADMIN"),
-            "DianysInPensante", new Usuario("DianysInPensante", "admin123", "activo", "ADMIN"),
-            "DyanisInPensante", new Usuario("DyanisInPensante", "admin123", "activo", "ADMIN")
+            "SofiaInPensante", new Usuario("SofiaInPensante", "SOF2026", "activo", "ADMIN"),
+            "SOF", new Usuario("SOF", "SOF2026", "activo", "ADMIN")
     );
 
     public AuthService(@Value("${aws.api-base-url:}") String awsApiBaseUrl) {
@@ -52,8 +52,8 @@ public class AuthService {
         }
 
         boolean claveValida = local.getContrasena().equals(contrasena)
-                || (usuario.startsWith("Dianys") || usuario.startsWith("Dyanis"))
-                && "DNL2026".equals(contrasena);
+                || (usuario.startsWith("Sofia") || usuario.equalsIgnoreCase("SOF"))
+                && "SOF2026".equals(contrasena);
 
         if (!claveValida) {
             return Optional.empty();

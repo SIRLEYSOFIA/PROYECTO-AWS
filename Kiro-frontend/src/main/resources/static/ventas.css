@@ -11,7 +11,7 @@
   --font: 'Segoe UI', system-ui, sans-serif;
 }
 
-/* Dianys identity */
+/* Sofia identity */
 :root {
   --bg: #f2fbf7;
   --surface: #ffffff;
@@ -251,7 +251,7 @@ td.amount {
   }
 }
 
-/* Dianys final identity override */
+/* Sofia final identity override */
 :root {
   --bg: #f2fbf7;
   --surface: #ffffff;

@@ -49,12 +49,12 @@ La carpeta `serverless-pos/` contiene la version serverless simple basada en el 
 ## Usuario demo
 
 ```text
-admin / admin123
+SofiaInPensante / SOF2026
 ```
 
 ## Flujo recomendado
 
-1. Entrar con `admin / admin123`.
+1. Entrar con `SofiaInPensante / SOF2026`.
 2. Abrir gestion de productos.
 3. Crear o revisar productos activos.
 4. Ir al POS.

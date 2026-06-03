@@ -1,6 +1,6 @@
 # Proyecto AWS Sofia - POS Serverless
 
-Sistema POS web con frontend HTML5/CSS/JavaScript y backend serverless en AWS.
+Sistema POS web para Sofia con frontend, API Gateway, Lambdas y DynamoDB.
 
 ## Rutas
 
@@ -41,11 +41,11 @@ http://localhost:8082/login.html
 Credenciales:
 
 ```text
-Usuario: DianysInPensante
-Clave:   DNL2026
+Usuario: SofiaInPensante
+Clave:   SOF2026
 ```
 
-Tambien funciona `DyanisInPensante` con la misma clave.
+Estas credenciales corresponden a la usuaria principal del proyecto.
 
 ## Configurar API Gateway
 
@@ -55,10 +55,10 @@ El frontend lee la URL desde:
 Kiro-frontend/src/main/resources/static/config.js
 ```
 
-La API actual esta configurada como:
+La API actual del proyecto Sofia esta configurada como:
 
 ```text
-https://nl5m5jcqcj.execute-api.us-east-2.amazonaws.com
+https://387ozq7na6.execute-api.us-east-1.amazonaws.com
 ```
 
 ## Endpoints

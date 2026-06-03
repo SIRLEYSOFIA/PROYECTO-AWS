@@ -23,7 +23,7 @@ http://localhost:3000/login.html
 2. Entrar:
 
 ```text
-admin / admin123
+SofiaInPensante / SOF2026
 ```
 
 3. Mostrar productos:

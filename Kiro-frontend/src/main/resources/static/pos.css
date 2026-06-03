@@ -35,7 +35,7 @@
   --btn-radius:     8px;
 }
 
-/* Dianys identity: mint POS shell */
+/* Sofia identity: mint POS shell */
 :root {
   --color-bg:            #f2fbf7;
   --color-surface:       #ffffff;
@@ -995,7 +995,7 @@ body {
   }
 }
 
-/* Dianys final identity override */
+/* Sofia final identity override */
 :root {
   --color-bg: #f2fbf7;
   --color-surface: #ffffff;
@@ -1040,7 +1040,7 @@ body {
   color: #16866f;
 }
 
-/* Dianys distinct POS layout: bottom command bar */
+/* Sofia distinct POS layout: bottom command bar */
 body {
   min-height: 100vh;
   background:

@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-/* Dianys identity */
+/* Sofia identity */
 :root {
     --bg-1: #d7f4e8;
     --bg-2: #f4fbf7;
@@ -333,7 +333,7 @@ th {
 
 }
 
-/* Dianys final identity override */
+/* Sofia final identity override */
 :root {
     --bg-1: #d7f4e8;
     --bg-2: #f4fbf7;

@@ -1,6 +1,6 @@
-# Proyecto Dianys - Fullstack POS
+# Proyecto AWS Sofia - Fullstack POS
 
-Proyecto POS con frontend HTML5/CSS/JavaScript, backend local Spring Boot y backend serverless AWS SAM.
+Proyecto POS para Sofia con frontend HTML5/CSS/JavaScript, backend local Spring Boot y backend serverless AWS SAM.
 
 ## Arquitectura
 
@@ -45,7 +45,7 @@ http://localhost:8082/login.html
 Credenciales:
 
 ```text
-DianysInPensante / DNL2026
+SofiaInPensante / SOF2026
 ```
 
 ## API Gateway

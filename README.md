@@ -1,6 +1,6 @@
-# Proyecto AWS Sofia
+# Proyecto AWS Sofia - POS Serverless
 
-Proyecto POS con frontend React/Vite y backend serverless en AWS.
+Sistema de punto de venta para Sofia, construido con un frontend React/Vite publicado en GitHub Pages y un backend serverless en AWS con API Gateway, Lambdas y DynamoDB.
 
 ## Sitio publicado
 
@@ -12,7 +12,7 @@ https://sirleysofia.github.io/PROYECTO-AWS/
 
 La publicacion se hace automaticamente con GitHub Actions cuando se sube codigo a `main`.
 
-## Frontend principal
+## Aplicacion principal
 
 El frontend principal esta en:
 
@@ -32,6 +32,15 @@ El frontend usa la API desplegada en AWS:
 
 ```text
 https://387ozq7na6.execute-api.us-east-1.amazonaws.com
+```
+
+## Credenciales de prueba
+
+Para las pantallas legacy servidas por Spring Boot:
+
+```text
+Usuario: SofiaInPensante
+Clave: SOF2026
 ```
 
 ## GitHub Pages
@@ -70,6 +79,17 @@ Incluye:
 - Lambda para productos.
 - Lambda para ventas.
 - DynamoDB para productos, ventas y usuarios.
+
+Endpoints principales:
+
+```text
+GET  /api/products
+GET  /api/products/search?name=arroz
+GET  /api/products/search?barcode=1
+POST /api/products
+GET  /api/sales
+POST /api/sales
+```
 
 Stack desplegado:
 

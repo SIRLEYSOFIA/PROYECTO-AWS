@@ -1,6 +1,6 @@
-# Proyecto Dianys - Frontend POS
+# Proyecto AWS Sofia - Frontend POS
 
-Frontend web de punto de venta construido con HTML5 semantico, CSS propio y JavaScript vanilla modular. Consume una API Gateway para consultar productos y registrar ventas.
+Frontend web de punto de venta para Sofia, construido con HTML5 semantico, CSS propio y JavaScript vanilla modular. Consume una API Gateway para consultar productos y registrar ventas.
 
 ## Arquitectura
 
@@ -27,7 +27,7 @@ http://localhost:8082/login.html
 Credenciales:
 
 ```text
-DianysInPensante / DNL2026
+SofiaInPensante / SOF2026
 ```
 
 ## API Gateway

@@ -15,6 +15,7 @@ public class AuthService {
 
     public AuthService() {
         usuarios.add(new Usuario("admin", "admin123", "activo", "ADMIN"));
+        usuarios.add(new Usuario("SofiaInPensante", "SOF2026", "activo", "ADMIN"));
         usuarios.add(new Usuario("inactivo", "noactivo1", "inactivo", "USER"));
     }
 
